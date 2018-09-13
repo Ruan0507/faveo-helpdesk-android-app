@@ -607,19 +607,21 @@ public class LoginActivity extends AppCompatActivity {
                 String userID = jsonObject1.getString("id");
                 String profile_pic = jsonObject1.getString("profile_pic");
                 String role = jsonObject1.getString("role");
-                if (role.equals("user")){
-                    final Toast toast = Toasty.info(LoginActivity.this, getString(R.string.userRestrict),Toast.LENGTH_SHORT);
-                    toast.show();
-                    new CountDownTimer(10000, 1000)
-                    {
-                        public void onTick(long millisUntilFinished) {toast.show();}
-                        public void onFinish() {toast.cancel();}
-                    }.start();
-                    textInputLayoutUsername.setEnabled(true);
-                    textInputLayoutPass.setEnabled(true);
-                    buttonSignIn.setText(getString(R.string.sign_in));
-                    return;
-                }
+                //          Allows users to log in
+//                if (role.equals("user")){
+//                    final Toast toast = Toasty.info(LoginActivity.this, getString(R.string.userRestrict),Toast.LENGTH_SHORT);
+//                    toast.show();
+//                    new CountDownTimer(10000, 1000)
+//                    {
+//                        public void onTick(long millisUntilFinished) {toast.show();}
+//                        public void onFinish() {toast.cancel();}
+//                    }.start();
+//                    textInputLayoutUsername.setEnabled(true);
+//                    textInputLayoutPass.setEnabled(true);
+//                    buttonSignIn.setText(getString(R.string.sign_in));
+//                    return;
+//                }
+                //      Allows users to log in
                 Prefs.putString("ROLE",role);
                 Prefs.putString("profilePicture",profile_pic);
                 String firstName = jsonObject1.getString("first_name");
