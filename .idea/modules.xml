@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/faveo/faveo.iml" filepath="$PROJECT_DIR$/faveo/faveo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/faveo-helpdesk-android-app-develop1.iml" filepath="$PROJECT_DIR$/faveo-helpdesk-android-app-develop1.iml" />
+      <module fileurl="file:///mnt/p5btrfs/home/itstudent/AndroidStudioProjects/faveo-helpdesk-android-app/faveo/faveo.iml" filepath="/mnt/p5btrfs/home/itstudent/AndroidStudioProjects/faveo-helpdesk-android-app/faveo/faveo.iml" />
+      <module fileurl="file:///mnt/p5btrfs/home/itstudent/AndroidStudioProjects/faveo-helpdesk-android-app/faveo-helpdesk-android-app.iml" filepath="/mnt/p5btrfs/home/itstudent/AndroidStudioProjects/faveo-helpdesk-android-app/faveo-helpdesk-android-app.iml" />
     </modules>
   </component>
 </project>
