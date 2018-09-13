@@ -89,6 +89,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @BindView(R.id.button_signin)
     Button buttonSignIn;
+    @BindView(R.id.button_register)
+    Button buttonRegister;
     @BindView(R.id.fab_verify_url)
     FloatingActionButton buttonVerifyURL;
     @BindView(R.id.input_password)
@@ -165,6 +167,8 @@ public class LoginActivity extends AppCompatActivity {
         url.setVisibility(View.GONE);
         flipColor.setBackgroundColor(ContextCompat.getColor(this, R.color.grey_200));
         buttonSignIn.setEnabled(true);
+        buttonRegister.setEnabled(true);
+        buttonRegister.setText("Register");
         urlSuggestions=new ArrayList<>();
         usernameEdittext.addTextChangedListener(mTextWatcher);
         passwordEdittext.addTextChangedListener(mTextWatcher);
@@ -367,6 +371,17 @@ public class LoginActivity extends AppCompatActivity {
 //                    }
 //                }else
 //                    Toasty.warning(LoginActivity.this, getString(R.string.oops_no_internet), Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+        buttonRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://196.253.97.35:8081/auth/register"));
+                startActivity(browserIntent);
+
             }
 
         });
