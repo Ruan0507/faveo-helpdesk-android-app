@@ -78,6 +78,7 @@
     <string name="erpa_helpdesk" translatable="false">ERPA HELPDESK</string>
     <string name="register_url">http://196.253.97.35:8084/auth/register</string>
     <string name="erpa_helpdesk_url">http://196.253.97.35:8084</string>
+    <string name="erpa_full_name">Emfuleni Ratepayers Association</string>
     <string name="faveo_content">Good day, and thank you for your interest in the ERPA (Emfuleni Ratepayers Association).
 We launched the ERPA concept in April 2018 and have already started multiple initiatives, least of which a 32-page PPP (Public/Private Partnership) application that covers all essential services; we expect that this initiative will receive a formal mandate in due course, which will enable us to kick-off the program. We are also in the process of developing an application (App), in conjunction with the NWU (North Western University) that will leverage support services and incident-reporting, including pro-active service delivery, escalation and many more.
 We have also completed inspections and documentation of 17 sewerage processing plants, with the goal to focus on corrective action. Electrical infrastructure inspections is next on the agenda, that will focus on the same goal, and in support we already have signed affidavits from 5 of the previous 7 most recent electrical engineers that have served the ELM, which warrants these inspections.

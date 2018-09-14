@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -84,6 +85,7 @@ import es.dmoral.toasty.Toasty;
 public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
+    private String userRoleString;
     private ActionBarDrawerToggle mDrawerToggle;
     public View containerView;
     private static String[] titles = null;
@@ -91,7 +93,9 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     View layout;
     Context context;
     DataModel[] drawerItem;
+    DataModel[] drawerItemErpa;
     DrawerItemCustomAdapter drawerItemCustomAdapter;
+    DrawerItemCustomAdapter drawerItemCustomAdapterErpa;
     ConfirmationDialog confirmationDialog;
     int count=0;
     ProgressDialog progressDialog;
@@ -106,8 +110,12 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
     ImageView profilePic;
     @BindView(R.id.listviewNavigation)
     ListView listView;
+    @BindView(R.id.listviewNavigationErpa)
+    ListView listViewErpa;
     @BindView(R.id.ticket_list)
     LinearLayout ticketList;
+    @BindView(R.id.client_list)
+    LinearLayout clientList;
 
     static String token;
     int responseCodeForShow;
@@ -144,6 +152,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         context = getActivity().getApplicationContext();
         layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         listView= (ListView) layout.findViewById(R.id.listviewNavigation);
+        listViewErpa = (ListView) layout.findViewById(R.id.listviewNavigationErpa);
         layout.findViewById(R.id.create_ticket).setOnClickListener(this);
 //        layout.findViewById(R.id.inbox_tickets).setOnClickListener(this);
 //        layout.findViewById(R.id.my_tickets).setOnClickListener(this);
@@ -155,6 +164,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         layout.findViewById(R.id.about).setOnClickListener(this);
         layout.findViewById(R.id.logout).setOnClickListener(this);
         drawerItem = new DataModel[5];
+        drawerItemErpa = new DataModel[3];
 
 
         ButterKnife.bind(this, layout);
@@ -167,11 +177,19 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
         //my_tickets_count.setText(Prefs.getString("myTickets", null));
         drawerItem[0] = new DataModel(R.drawable.inbox_tickets,getString(R.string.inbox), Prefs.getString("inboxTickets",null));
         drawerItem[1] = new DataModel(R.drawable.my_ticket,getString(R.string.my_tickets),Prefs.getString("myTickets", null));
-        drawerItem[2] = new DataModel(R.drawable.unassigned_ticket,getString(R.string.unassigned_tickets),Prefs.getString("unassignedTickets",null));
-        drawerItem[3] = new DataModel(R.drawable.closed_ticket,getString(R.string.closed_tickets),Prefs.getString("closedTickets", null));
-        drawerItem[4] = new DataModel(R.drawable.trash_ticket ,getString(R.string.trash),Prefs.getString("trashTickets", null));
+        drawerItem[2] = new DataModel(R.drawable.closed_ticket,getString(R.string.closed_tickets),Prefs.getString("closedTickets", null));
+        drawerItem[3] = new DataModel(R.drawable.trash_ticket ,getString(R.string.trash),Prefs.getString("trashTickets", null));
+        drawerItem[4] = new DataModel(R.drawable.unassigned_ticket,getString(R.string.unassigned_tickets),Prefs.getString("unassignedTickets",null));
         drawerItemCustomAdapter=new DrawerItemCustomAdapter(getActivity(),R.layout.list_view_item_row,drawerItem);
         listView.setAdapter(drawerItemCustomAdapter);
+
+        drawerItemErpa[0] = new DataModel(R.drawable.ic_exposure_black_24dp,"Polls","1");
+        drawerItemErpa[1] = new DataModel(R.drawable.ic_library_books_black_24dp,"Documentation","4");
+        drawerItemErpa[2] = new DataModel(R.drawable.ic_radio_black_24dp,"News","10");
+        drawerItemCustomAdapterErpa=new DrawerItemCustomAdapter(getActivity(),R.layout.list_view_item_row,drawerItemErpa);
+        listViewErpa.setAdapter(drawerItemCustomAdapterErpa);
+        UIUtils.setListViewHeightBasedOnItems(listViewErpa);
+
         progressDialog=new ProgressDialog(getActivity());
         drawerItemCustomAdapter.notifyDataSetChanged();
         UIUtils.setListViewHeightBasedOnItems(listView);
@@ -210,6 +228,10 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                     }
                 }
                 else if (position==2){
+                    if(userRoleString.equals("user")){
+                        Toast.makeText(getActivity(), "Unable to use this option", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
                     title = getString(R.string.unassigned_tickets);
                     fragment = getActivity().getSupportFragmentManager().findFragmentByTag(title);
                     if (fragment == null)
@@ -222,6 +244,7 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                         fragmentTransaction.commit();
                         ((MainActivity) getActivity()).setActionBarTitle(title);
                         mDrawerLayout.closeDrawer(GravityCompat.START);
+                    }
                     }
                 }else if (position==3){
                     title = getString(R.string.closed_tickets);
@@ -255,31 +278,62 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
 
             }
         });
-        try {
-            String letter = Prefs.getString("profilePicture", null);
-            Log.d("profilePicture", letter);
-            if (letter.contains("jpg") || letter.contains("png") || letter.contains("jpeg")) {
-                //profilePic.setColorFilter(getContext().getResources().getColor(R.color.white));
-                //profilePic.setColorFilter(context.getResources().getColor(R.color.faveo), PorterDuff.Mode.SRC_IN);
-                Picasso.with(context).load(letter).transform(new CircleTransform()).into(profilePic);
+
+        listViewErpa.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Fragment fragment=null;
+                if (position==0){
+                    Toast.makeText(getActivity(), "Polls Selected", Toast.LENGTH_SHORT).show();
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://erpa.co.za/polls/"));
+                    startActivity(browserIntent);
+
+                }else if (position==1){
+                    Toast.makeText(getActivity(), "Docs Selected", Toast.LENGTH_SHORT).show();
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://erpa.co.za/documents/"));
+                    startActivity(browserIntent);
+
+                }else if (position==2){
+                    Toast.makeText(getActivity(), "News Selected", Toast.LENGTH_SHORT).show();
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://erpa.co.za/blog/"));
+                    startActivity(browserIntent);
+
+                }
+
             }
-            else {
-                int color= Color.parseColor("#ffffff");
-                String letter1 = String.valueOf(Prefs.getString("PROFILE_NAME", "").charAt(0));
-                ColorGenerator generator = ColorGenerator.MATERIAL;
-                TextDrawable drawable = TextDrawable.builder()
-                        .buildRound(letter1,color);
-                //profilePic.setAlpha(0.2f);
-                profilePic.setColorFilter(context.getResources().getColor(R.color.faveo), PorterDuff.Mode.SRC_IN);
-                profilePic.setImageDrawable(drawable);
-            }
-        }catch (NullPointerException e){
-            e.printStackTrace();
-        }
+        });
+//        try {
+//            String letter = Prefs.getString("profilePicture", null);
+//            Log.d("profilePicture", letter);
+//            if (letter.contains("jpg") || letter.contains("png") || letter.contains("jpeg")) {
+//                //profilePic.setColorFilter(getContext().getResources().getColor(R.color.white));
+//                //profilePic.setColorFilter(context.getResources().getColor(R.color.faveo), PorterDuff.Mode.SRC_IN);
+//                Picasso.with(context).load(letter).transform(new CircleTransform()).into(profilePic);
+//            }
+//            else {
+//                int color= Color.parseColor("#ffffff");
+//                String letter1 = String.valueOf(Prefs.getString("PROFILE_NAME", "").charAt(0));
+//                ColorGenerator generator = ColorGenerator.MATERIAL;
+//                TextDrawable drawable = TextDrawable.builder()
+//                        .buildRound(letter1,color);
+//                //profilePic.setAlpha(0.2f);
+//                profilePic.setColorFilter(context.getResources().getColor(R.color.faveo), PorterDuff.Mode.SRC_IN);
+//                profilePic.setImageDrawable(drawable);
+//            }
+//        }catch (NullPointerException e){
+//            e.printStackTrace();
+//        }
 //        IImageLoader imageLoader = new PicassoLoader();
 //        imageLoader.loadImage(profilePic, Prefs.getString("PROFILE_PIC", null), Prefs.getString("USERNAME", " ").charAt(0) + "");
         userRole.setText(Prefs.getString("ROLE", ""));
-        domainAddress.setText(Prefs.getString("BASE_URL", ""));
+        if (userRole.getText().toString().equals("user")){
+            clientList.setVisibility(containerView.GONE);
+            userRoleString = "user";
+        }else
+        {
+            userRoleString = "admin";
+        }
+        domainAddress.setText(R.string.erpa_full_name);
         userName.setText(Prefs.getString("PROFILE_NAME", ""));
 
         ticketList.setOnClickListener(new View.OnClickListener() {
@@ -290,6 +344,8 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
             }
         });
         return layout;
+
+
     }
 
     @Override
@@ -708,7 +764,6 @@ public class FragmentDrawer extends Fragment implements View.OnClickListener {
                 mDrawerLayout.closeDrawer(GravityCompat.START);
                 Intent intent = new Intent(getContext(), CreateTicketActivity.class);
                 startActivity(intent);
-
                 break;
 
 //            case R.id.inbox_tickets:

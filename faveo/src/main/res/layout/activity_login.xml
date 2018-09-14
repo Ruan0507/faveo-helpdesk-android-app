@@ -138,9 +138,9 @@
                         android:paddingTop="12dp"
                         android:textCursorDrawable="@drawable/color_cursor"
                         android:textSize="14sp"
-                        android:text="@string/register_url"
+                        android:text="@string/erpa_helpdesk_url"
                         android:editable="false"
-                        android:hint="eg: http://196.253.97.35:8084/"/>
+                        android:hint="eg: http://196.253.97.35:8084"/>
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/fab_verify_url"

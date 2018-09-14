@@ -21,7 +21,7 @@
 
         <ImageView
             android:id="@+id/imageView_default_profile"
-            android:layout_width="72dp"
+            android:layout_width="100dp"
             android:layout_height="72dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -30,8 +30,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="54dp"
             android:transitionName="@string/blue_name"
-            android:backgroundTint="@color/white"
-            android:background="@drawable/rounded_textview"
+            android:background="@drawable/erpatranslogo"
              />
 
         <TextView
@@ -450,6 +449,55 @@
                     android:textSize="14sp" />
 
             </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_200" />
+
+            <LinearLayout
+                android:id="@+id/erpa_list"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:background="@color/colorAccent">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_margin="22dp"
+                    android:src="@drawable/erpatranslogo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="sans-serif-bold"
+                    android:gravity="center"
+                    android:text="ERPA"
+                    android:textColor="@color/black"
+                    android:textSize="14sp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey_200" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/listviewNavigationErpa"
+                    android:nestedScrollingEnabled="true"
+                    >
+
+                </ListView>
+
+
+            </LinearLayout>
+
 
             <View
                 android:layout_width="match_parent"
