@@ -74,7 +74,7 @@ public class About extends Fragment {
         rootView.findViewById(R.id.button_website).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.faveohelpdesk.com/"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://erpa.co.za "));
                 startActivity(browserIntent);
             }
         });

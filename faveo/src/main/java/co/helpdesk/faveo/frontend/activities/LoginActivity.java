@@ -143,8 +143,8 @@ public class LoginActivity extends AppCompatActivity {
             if (!Prefs.getString("BASE_URL", null).equals("") || !Prefs.getString("BASE_URL", null).equals(null)) {
                 editTextCompanyURL.setText(Prefs.getString("BASE_URL", null));
             } else {
-                editTextCompanyURL.setText("");
-                editTextCompanyURL.setHint("eg: http://faveohelpdesk.com/public");
+                editTextCompanyURL.setText("http://196.253.97.35:8084");
+                editTextCompanyURL.setHint("eg: http://196.253.97.35:8084");
             }
         }catch (NullPointerException e){
             e.printStackTrace();
@@ -172,6 +172,7 @@ public class LoginActivity extends AppCompatActivity {
         urlSuggestions=new ArrayList<>();
         usernameEdittext.addTextChangedListener(mTextWatcher);
         passwordEdittext.addTextChangedListener(mTextWatcher);
+        editTextCompanyURL.setEnabled(false);
 
         //View init
         setUpViews();
@@ -379,7 +380,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://196.253.97.35:8081/auth/register"));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://196.253.97.35:8084/auth/register"));
                 startActivity(browserIntent);
 
             }

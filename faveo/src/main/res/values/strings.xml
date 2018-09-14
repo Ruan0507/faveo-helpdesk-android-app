@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name" translatable="false">Faveo Helpdesk Community</string>
+    <string name="app_name" translatable="false">EPRA APP</string>
     <string name="facebook_app_id">1139653046135923</string>
     <string name="fb_login_protocol_scheme">fb1139653046135923</string>
 
     <string name="title_activity_client_profile" translatable="false">ClientProfile</string>
     <string name="title_activity_forgot_password" translatable="false">ForgotPassword</string>
-    <string name="title_activity_splash" translatable="false">Faveo</string>
+    <string name="title_activity_splash" translatable="false">ERPA</string>
     <string name="title_activity_ticket_detail" translatable="false">TicketDetail</string>
     <string name="create_ticket_disabled_message" translatable="false">Disabled</string>
     <string name="static_shortcut_long_label" translatable="false">Create a new ticket</string>
@@ -73,11 +73,18 @@
     <string name="priority">Priority</string>
     <string name="subject">Subject</string>
     <string name="email_address" translatable="false">Email Address</string>
-    <string name="version_2_0" translatable="false">Version: 2.0</string>
-    <string name="faveo_helpdesk" translatable="false">Faveo HELPDESK</string>
-    <string name="faveo_content">Headquartered in Bangalore, Faveo HELPDESK provides Businesses with an automated Helpdesk system to manage customer support.  The word Faveo comes from Latin which means to be favourable. Which truly highlights vision and the scope as well as the functionality of the product that Faveo is. It is specifically designed to cater the needs of startups and SME’s empowering them with state of art, ticket based support system. In today’s competitive startup scenario customer retention is one of the major challenges. Handling client query diligently is all the difference between retaining or losing a long lasting relationship. The company is driven with passion of providing tools for managing consumer queries for strategic insights and helping companies take those decisive decisions.</string>
+    <string name="version_2_0" translatable="false">Version: 1.0</string>
+    <string name="faveo_helpdesk" translatable="false">Based on Faveo HELPDESK</string>
+    <string name="erpa_helpdesk" translatable="false">ERPA HELPDESK</string>
+    <string name="register_url">http://196.253.97.35:8084/auth/register</string>
+    <string name="erpa_helpdesk_url">http://196.253.97.35:8084</string>
+    <string name="faveo_content">Good day, and thank you for your interest in the ERPA (Emfuleni Ratepayers Association).
+We launched the ERPA concept in April 2018 and have already started multiple initiatives, least of which a 32-page PPP (Public/Private Partnership) application that covers all essential services; we expect that this initiative will receive a formal mandate in due course, which will enable us to kick-off the program. We are also in the process of developing an application (App), in conjunction with the NWU (North Western University) that will leverage support services and incident-reporting, including pro-active service delivery, escalation and many more.
+We have also completed inspections and documentation of 17 sewerage processing plants, with the goal to focus on corrective action. Electrical infrastructure inspections is next on the agenda, that will focus on the same goal, and in support we already have signed affidavits from 5 of the previous 7 most recent electrical engineers that have served the ELM, which warrants these inspections.
+However, this is but the tip of the proverbial iceberg, and as such we welcome any assistance that can be added to the growing number of voluntary community members that are desirous to contribute to a marked change to the atrocious conditions of essential services in our communities.
+Please address an email to info@erpa.co.za with your contact details, so that we can register you on the relevant ERPA collaboration group.</string>
     <string name="website">Website</string>
-    <string name="faveo_url" translatable="false">www.faveohelpdesk.com</string>
+    <string name="faveo_url" translatable="false">https://erpa.co.za</string>
     <string name="submit">Submit</string>
     <string name="not_available">Not Available</string>
     <string name="source">Source</string>
